@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts,scss}"
-  ],
+  mode: 'jit',
+
+  purge: {
+    enabled: true,
+    content: [
+      './src/**/*.{html,ts,scss}'
+    ],
+  },
+
   darkMode: 'class',
+
   theme: {
     extend: {
       colors: {
@@ -50,21 +57,25 @@ module.exports = {
         "outline-variant": "#dac0c9",
         "on-secondary-fixed-variant": "#444749"
       },
+
       fontFamily: {
         "headline": ["Plus Jakarta Sans", "sans-serif"],
         "body": ["Inter", "sans-serif"],
         "label": ["Inter", "sans-serif"]
       },
+
       borderRadius: {
         DEFAULT: "1rem",
         "lg": "2rem",
         "xl": "3rem",
         "full": "9999px"
       },
+
       animation: {
         'fade-up': 'fadeUp 0.6s ease forwards',
         'fade-in': 'fadeIn 0.8s ease forwards',
       },
+
       keyframes: {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(30px)' },
@@ -77,5 +88,6 @@ module.exports = {
       }
     },
   },
+
   plugins: [],
-}
+};

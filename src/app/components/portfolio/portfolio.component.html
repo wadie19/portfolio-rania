@@ -11,7 +11,7 @@
           Mes Réalisations
         </h2>
 
-        <p class="text-on-surface-variant mt-3 text-sm">
+        <p class="text-on-surface-variant mt-3 text-sm max-w-2xl">
           Photos et vidéos réelles de mon travail — poses naturelles, french, baby boomer, nail art et décorations personnalisées.
         </p>
       </div>
@@ -64,52 +64,56 @@
       >
 
         <ng-container [ngSwitch]="item.type">
-
           <img
             *ngSwitchCase="'image'"
             [src]="item.src"
             [alt]="item.title"
             loading="lazy"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             (error)="onImageError($event, item.fallback)"
           />
 
           <video
             *ngSwitchCase="'video'"
             [src]="item.src"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             muted
+            [muted]="true"
             loop
             playsinline
             preload="metadata"
             controls
           ></video>
-
         </ng-container>
 
         <div
-          class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest"
+          class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold uppercase tracking-widest shadow-sm"
         >
           {{ item.type === 'video' ? 'Vidéo' : item.category }}
         </div>
 
         <div
-          class="absolute inset-0 bg-primary/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 text-white pointer-events-none"
+          class="absolute inset-x-0 bottom-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         >
-          <span class="text-xs font-bold uppercase tracking-widest mb-2">
-            {{ item.category }}
-          </span>
+          <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-          <h4 class="text-2xl font-headline font-bold">
-            {{ item.title }}
-          </h4>
+          <div class="relative p-6 text-white">
+            <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-90">
+              {{ item.category }}
+            </span>
 
-          <p class="text-sm opacity-90 mt-2">
-            {{ item.description }}
-          </p>
+            <h4 class="text-xl font-headline font-bold leading-tight">
+              {{ item.title }}
+            </h4>
+
+            <p class="text-sm opacity-90 mt-2 leading-relaxed">
+              {{ item.description }}
+            </p>
+          </div>
         </div>
 
       </div>
     </div>
+
   </div>
 </section>

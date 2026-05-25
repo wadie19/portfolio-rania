@@ -1,0 +1,242 @@
+<section class="py-24 bg-surface" id="avis">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="mb-16 text-center">
+      <span
+        class="text-primary font-headline font-bold tracking-[0.2em] text-xs uppercase block mb-4"
+      >
+        Témoignages
+      </span>
+
+      <h2
+        class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight"
+      >
+        Ce qu'elles en disent
+      </h2>
+
+      <p class="text-on-surface-variant mt-4 text-sm max-w-lg mx-auto">
+        Mes clientes en Tunisie témoignent de la qualité de mon travail et de
+        l'expérience que je leur offre.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+        *ngFor="let t of testimonials; trackBy: trackByTestimonialName"
+        class="bg-surface-container-low p-10 rounded-xl border-l-[6px] border-primary-container relative transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1"
+      >
+
+        <p class="text-on-surface-variant italic leading-relaxed mb-6 relative z-10">
+          "{{ t.text }}"
+        </p>
+
+        <div class="flex items-center gap-4">
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold"
+            [ngClass]="t.color"
+          >
+            {{ t.initials }}
+          </div>
+
+          <div>
+            <span class="block font-bold text-on-surface">
+              {{ t.name }}
+            </span>
+            <span class="text-xs text-on-surface-variant uppercase tracking-widest">
+              {{ t.role }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8">
+      <div class="flex items-center gap-3">
+        <div class="flex text-yellow-400">
+          <span
+            *ngFor="let star of stars; trackBy: trackByStar"
+            class="material-symbols-outlined text-2xl"
+            style="font-variation-settings: 'FILL' 1"
+          >
+            star
+          </span>
+        </div>
+
+        <span class="font-headline font-bold text-on-surface">5.0</span>
+        <span class="text-on-surface-variant text-sm">· Avis clients Tunisie</span>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-16 bg-surface-container-low rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-headline font-bold text-on-surface mb-6 text-center">
+        Laisser un témoignage
+      </h3>
+
+      <form
+        (ngSubmit)="sendTestimonial()"
+        #testimonialForm="ngForm"
+        class="space-y-4"
+        novalidate
+      >
+        <!-- NOM -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+            Votre nom *
+          </label>
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="formData.name"
+            required
+            minlength="2"
+            maxlength="50"
+            #nameCtrl="ngModel"
+            placeholder="Ex : Sarah M."
+            class="w-full bg-white border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-container transition-all"
+            [ngClass]="{
+              'border-red-500': nameCtrl.invalid && nameCtrl.touched,
+              'border-green-500': nameCtrl.valid && nameCtrl.touched,
+              'border-transparent': !nameCtrl.touched
+            }"
+          />
+
+          <p *ngIf="nameCtrl.errors?.['required'] && nameCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le nom est obligatoire.
+          </p>
+          <p *ngIf="nameCtrl.errors?.['minlength'] && nameCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le nom doit contenir au moins 2 caractères.
+          </p>
+          <p *ngIf="nameCtrl.errors?.['maxlength'] && nameCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le nom ne doit pas dépasser 50 caractères.
+          </p>
+        </div>
+
+        <!-- STATUT -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+            Votre statut *
+          </label>
+          <input
+            type="text"
+            name="role"
+            [(ngModel)]="formData.role"
+            required
+            minlength="3"
+            maxlength="40"
+            #roleCtrl="ngModel"
+            placeholder="Ex : Cliente fidèle"
+            class="w-full bg-white border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-container transition-all"
+            [ngClass]="{
+              'border-red-500': roleCtrl.invalid && roleCtrl.touched,
+              'border-green-500': roleCtrl.valid && roleCtrl.touched,
+              'border-transparent': !roleCtrl.touched
+            }"
+          />
+
+          <p *ngIf="roleCtrl.errors?.['required'] && roleCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le statut est obligatoire.
+          </p>
+          <p *ngIf="roleCtrl.errors?.['minlength'] && roleCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le statut doit contenir au moins 3 caractères.
+          </p>
+          <p *ngIf="roleCtrl.errors?.['maxlength'] && roleCtrl.touched" class="text-red-500 text-xs mt-1">
+            Le statut ne doit pas dépasser 40 caractères.
+          </p>
+        </div>
+
+        <!-- EMAIL -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+            Votre email
+          </label>
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="formData.email"
+            email
+            maxlength="100"
+            #emailCtrl="ngModel"
+            placeholder="Ex : sarah@email.com"
+            class="w-full bg-white border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-container transition-all"
+            [ngClass]="{
+              'border-red-500': emailCtrl.invalid && emailCtrl.touched,
+              'border-green-500': emailCtrl.valid && emailCtrl.touched && formData.email,
+              'border-transparent': !emailCtrl.touched
+            }"
+          />
+
+          <p *ngIf="emailCtrl.errors?.['email'] && emailCtrl.touched" class="text-red-500 text-xs mt-1">
+            Veuillez saisir une adresse email valide.
+          </p>
+          <p *ngIf="emailCtrl.errors?.['maxlength'] && emailCtrl.touched" class="text-red-500 text-xs mt-1">
+            L'adresse email ne doit pas dépasser 100 caractères.
+          </p>
+        </div>
+
+        <!-- TEMOIGNAGE -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+            Votre témoignage *
+          </label>
+          <textarea
+            name="message"
+            [(ngModel)]="formData.message"
+            required
+            minlength="10"
+            maxlength="500"
+            #messageCtrl="ngModel"
+            rows="5"
+            placeholder="Partagez votre expérience..."
+            class="w-full bg-white border rounded-lg px-4 py-3 text-sm resize-none focus:ring-2 focus:ring-primary-container transition-all"
+            [ngClass]="{
+              'border-red-500': messageCtrl.invalid && messageCtrl.touched,
+              'border-green-500': messageCtrl.valid && messageCtrl.touched,
+              'border-transparent': !messageCtrl.touched
+            }"
+          ></textarea>
+
+          <div class="flex justify-between items-center mt-1">
+            <div>
+              <p *ngIf="messageCtrl.errors?.['required'] && messageCtrl.touched" class="text-red-500 text-xs">
+                Le témoignage est obligatoire.
+              </p>
+              <p *ngIf="messageCtrl.errors?.['minlength'] && messageCtrl.touched" class="text-red-500 text-xs">
+                Le témoignage doit contenir au moins 20 caractères.
+              </p>
+              <p *ngIf="messageCtrl.errors?.['maxlength'] && messageCtrl.touched" class="text-red-500 text-xs">
+                Le témoignage ne doit pas dépasser 500 caractères.
+              </p>
+            </div>
+
+            <span
+              class="text-xs"
+              [ngClass]="{
+                'text-red-500': (formData.message.length || 0) > 500,
+                'text-on-surface-variant': (formData.message.length || 0) <= 500
+              }"
+            >
+              {{ formData.message.length || 0 }}/500
+            </span>
+          </div>
+        </div>
+
+        <div class="text-center pt-2">
+          <button
+            type="submit"
+            [disabled]="!testimonialForm.valid || isSending"
+            class="bg-primary text-white px-8 py-3 rounded-full font-headline font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            {{ isSending ? "Envoi en cours..." : "Envoyer mon témoignage" }}
+          </button>
+        </div>
+
+        <p *ngIf="successMessage" class="text-green-600 text-sm text-center mt-4">
+          {{ successMessage }}
+        </p>
+
+        <p *ngIf="errorMessage" class="text-red-600 text-sm text-center mt-4">
+          {{ errorMessage }}
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

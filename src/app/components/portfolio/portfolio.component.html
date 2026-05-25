@@ -1,0 +1,115 @@
+<section class="py-24 bg-surface-container-high rounded-[4rem]" id="portfolio">
+  <div class="max-w-7xl mx-auto px-8">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      <div>
+        <span class="text-primary font-headline font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+          Portfolio
+        </span>
+
+        <h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight">
+          Mes Réalisations
+        </h2>
+
+        <p class="text-on-surface-variant mt-3 text-sm">
+          Photos et vidéos réelles de mon travail — poses naturelles, french, baby boomer, nail art et décorations personnalisées.
+        </p>
+      </div>
+
+      <a
+        href="https://www.instagram.com/ranya_rezgui__"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 text-primary font-headline font-bold text-sm uppercase tracking-widest border-b-2 border-primary/20 pb-1 hover:border-primary transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+        </svg>
+
+        Voir mon Instagram
+      </a>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mb-10">
+      <button
+        *ngFor="let f of filters; trackBy: trackByFilter"
+        type="button"
+        (click)="setFilter(f)"
+        class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-headline transition-all duration-300 transform"
+        [ngClass]="{
+          'bg-primary text-on-primary scale-105 shadow-lg shadow-primary/20 ring-2 ring-primary/10': activeFilter === f,
+          'bg-surface-container-lowest text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant hover:scale-105 shadow-sm': activeFilter !== f
+        }"
+      >
+        {{ f }}
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div
+        *ngFor="let item of filteredItems; trackBy: trackByPortfolioItem"
+        class="group relative aspect-square overflow-hidden rounded-xl bg-zinc-200 shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+
+        <ng-container [ngSwitch]="item.type">
+
+          <img
+            *ngSwitchCase="'image'"
+            [src]="item.src"
+            [alt]="item.title"
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            (error)="onImageError($event, item.fallback)"
+          />
+
+          <video
+            *ngSwitchCase="'video'"
+            [src]="item.src"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+
+        </ng-container>
+
+        <div
+          class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest"
+        >
+          {{ item.type === 'video' ? 'Vidéo' : item.category }}
+        </div>
+
+        <div
+          class="absolute inset-0 bg-primary/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 text-white pointer-events-none"
+        >
+          <span class="text-xs font-bold uppercase tracking-widest mb-2">
+            {{ item.category }}
+          </span>
+
+          <h4 class="text-2xl font-headline font-bold">
+            {{ item.title }}
+          </h4>
+
+          <p class="text-sm opacity-90 mt-2">
+            {{ item.description }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

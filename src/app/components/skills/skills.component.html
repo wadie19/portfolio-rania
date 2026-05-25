@@ -1,0 +1,53 @@
+<section class="py-24 bg-surface-container-low rounded-t-[4rem]" id="competences">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="mb-16">
+      <span class="text-primary font-headline font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+        Savoir-faire
+      </span>
+      <h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight">
+        Mes Compétences
+      </h2>
+      <p class="text-on-surface-variant mt-4 max-w-xl text-base leading-relaxed">
+        Des techniques apprises, perfectionnées et appliquées quotidiennement dans mon atelier.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let skill of skills; trackBy: trackBySkillTitle"
+        class="bg-surface-container-lowest p-8 rounded-xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary-container/20 group border-b-4 border-transparent hover:border-tertiary-container"
+      >
+        <div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:rotate-12">
+          <span class="material-symbols-outlined text-primary text-3xl">{{ skill.icon }}</span>
+        </div>
+
+        <h3 class="text-xl font-headline font-bold mb-3">
+          {{ skill.title }}
+        </h3>
+
+        <p class="text-on-surface-variant text-sm leading-relaxed">
+          {{ skill.description }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-gradient-to-r from-primary to-pink-500 text-white rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-2xl font-headline font-extrabold mb-2">
+          Disponible pour un poste en France 🇫🇷
+        </h3>
+        <p class="opacity-90 text-sm leading-relaxed max-w-xl">
+          Forte de mon expérience en Tunisie, je souhaite intégrer un salon professionnel en France.
+          Sérieuse, passionnée et prête à apporter mes compétences dès maintenant.
+        </p>
+      </div>
+
+      <a
+        href="#contact"
+        class="shrink-0 bg-white text-primary px-8 py-3 rounded-full font-headline font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all duration-300 whitespace-nowrap"
+      >
+        Me contacter
+      </a>
+    </div>
+  </div>
+</section>

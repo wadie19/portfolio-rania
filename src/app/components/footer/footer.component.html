@@ -1,0 +1,43 @@
+<footer class="w-full rounded-t-[3rem] mt-4 bg-zinc-50">
+  <div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-7xl mx-auto gap-8">
+    <div class="space-y-3 text-center md:text-left">
+      <span class="text-lg font-bold text-primary font-headline">
+        L'Atelier Ongles
+      </span>
+
+      <p class="text-xs leading-relaxed text-zinc-500 max-w-xs">
+        Portfolio de technicienne ongulaire professionnelle.<br>
+        Disponible pour un poste en France.
+      </p>
+
+      <p class="text-xs text-zinc-400">
+        © {{ year }} · Tous droits réservés
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center gap-2">
+      <div class="flex gap-1">
+        <span
+          *ngFor="let star of stars; trackBy: trackByStar"
+          class="material-symbols-outlined text-yellow-400 text-xl"
+          style="font-variation-settings: 'FILL' 1"
+        >
+          star
+        </span>
+      </div>
+
+      <span class="text-xs text-zinc-400 font-medium">
+        5 ans d'expérience · Tunisie
+      </span>
+    </div>
+
+    <div class="flex gap-6">
+      <a class="text-zinc-400 hover:text-primary text-xs font-semibold transition-colors" href="#">
+        Mentions légales
+      </a>
+      <a class="text-zinc-400 hover:text-primary text-xs font-semibold transition-colors" href="#contact">
+        Contact
+      </a>
+    </div>
+  </div>
+</footer>

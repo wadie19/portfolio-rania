@@ -1,0 +1,236 @@
+<section class="py-24 bg-surface-container-low" id="contact">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="text-center mb-12">
+      <span class="text-primary font-headline font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+        Contact
+      </span>
+
+      <h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight">
+        Travaillons ensemble
+      </h2>
+
+      <p class="text-on-surface-variant mt-4 text-base max-w-xl mx-auto leading-relaxed">
+        Vous gérez un salon en France et vous cherchez une technicienne ongulaire passionnée et expérimentée ?
+        N'hésitez pas à me contacter !
+      </p>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-2xl shadow-primary/5 flex flex-col lg:flex-row">
+      <div class="lg:w-1/3 bg-primary p-12 text-on-primary">
+        <h3 class="text-3xl font-headline font-extrabold mb-4">
+          Me rejoindre en France 🇫🇷
+        </h3>
+
+        <p class="opacity-85 mb-8 text-sm leading-relaxed">
+          Je suis disponible pour un poste en CDI dans un salon professionnel.
+          Je m'adapte et je suis prête à m'intégrer rapidement.
+        </p>
+
+        <div class="space-y-5 mb-10">
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined mt-0.5">mail</span>
+            <span class="text-sm">rania.rezgui27&#64;gmail.com</span>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined mt-0.5">call</span>
+            <span class="text-sm">+216 94 747 709</span>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined mt-0.5">location_on</span>
+            <span class="text-sm">Actuellement en Tunisie<br>Mobilité : toute la France</span>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined mt-0.5">language</span>
+            <span class="text-sm">Français · Arabe</span>
+          </div>
+        </div>
+
+        <div class="border border-on-primary/20 rounded-lg p-4 space-y-2">
+          <p class="text-xs font-bold uppercase tracking-widest opacity-70 mb-3">
+            Recherche
+          </p>
+
+          <div
+            *ngFor="let item of searchItems; trackBy: trackBySearchItem"
+            class="flex items-center gap-2 text-sm"
+          >
+            <span
+              class="material-symbols-outlined text-base"
+              style="font-variation-settings: 'FILL' 1"
+            >
+              check_circle
+            </span>
+            {{ item }}
+          </div>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+          <a
+            href="https://www.instagram.com/ranya_rezgui__"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="w-10 h-10 rounded-full border border-on-primary/30 flex items-center justify-center hover:bg-on-primary hover:text-primary transition-all"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+          </a>
+
+          <a
+            href="#"
+            class="w-10 h-10 rounded-full border border-on-primary/30 flex items-center justify-center hover:bg-on-primary hover:text-primary transition-all"
+          >
+            <span class="material-symbols-outlined text-xl">share</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:w-2/3 p-12">
+        <div *ngIf="submitted; else contactFormTpl" class="flex flex-col items-center justify-center h-full gap-4 py-16">
+          <span
+            class="material-symbols-outlined text-primary text-6xl"
+            style="font-variation-settings: 'FILL' 1"
+          >
+            check_circle
+          </span>
+
+          <h3 class="text-2xl font-headline font-bold">Message envoyé !</h3>
+
+          <p class="text-on-surface-variant text-center">
+            Je vous répondrai dans les plus brefs délais.
+          </p>
+        </div>
+
+        <ng-template #contactFormTpl>
+          <form (ngSubmit)="sendContactEmail()" #contactForm="ngForm" class="space-y-6" novalidate>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                  Votre nom
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  [(ngModel)]="formData.name"
+                  required
+                  #nameCtrl="ngModel"
+                  placeholder="Marie Dupont"
+                  class="w-full bg-surface-container border rounded-lg focus:ring-2 focus:ring-primary-container px-4 py-3 text-sm transition-all"
+                  [ngClass]="{
+                    'border-red-500': nameCtrl.invalid && nameCtrl.touched,
+                    'border-transparent': !(nameCtrl.invalid && nameCtrl.touched)
+                  }"
+                >
+                <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="text-red-500 text-xs mt-1">
+                  Le nom est obligatoire.
+                </p>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                  Email
+                </label>
+
+                <div class="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="formData.email"
+                    required
+                    email
+                    pattern="^[^s@]+@[^s@]+\.[^s@]{2,}$"
+                    #emailCtrl="ngModel"
+                    placeholder="marie@salon.fr"
+                    class="w-full bg-surface-container border rounded-lg focus:ring-2 focus:ring-primary-container px-4 py-3 pr-12 text-sm transition-all"
+                    [ngClass]="{
+                      'border-red-500': emailCtrl.invalid && emailCtrl.touched,
+                      'border-green-500': emailCtrl.valid && emailCtrl.touched,
+                      'border-transparent': !emailCtrl.touched
+                    }"
+                  >
+
+                  <span
+                    *ngIf="emailCtrl.valid && emailCtrl.touched"
+                    class="material-symbols-outlined text-green-600 absolute right-3 top-1/2 -translate-y-1/2 text-xl"
+                    style="font-variation-settings: 'FILL' 1"
+                  >
+                    check_circle
+                  </span>
+                </div>
+
+                <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-red-500 text-xs mt-1">
+                  Veuillez saisir une adresse email valide.
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Nom du salon / Entreprise
+              </label>
+              <input
+                type="text"
+                name="salon"
+                [(ngModel)]="formData.salon"
+                placeholder="Salon Beauté Paris"
+                class="w-full bg-surface-container border border-transparent rounded-lg focus:ring-2 focus:ring-primary-container px-4 py-3 text-sm"
+              >
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Votre message
+              </label>
+              <textarea
+                name="message"
+                [(ngModel)]="formData.message"
+                required
+                #messageCtrl="ngModel"
+                rows="5"
+                placeholder="Parlez-moi du poste, de votre salon, de vos attentes..."
+                class="w-full bg-surface-container border rounded-lg focus:ring-2 focus:ring-primary-container px-4 py-3 text-sm resize-none transition-all"
+                [ngClass]="{
+                  'border-red-500': messageCtrl.invalid && messageCtrl.touched,
+                  'border-transparent': !(messageCtrl.invalid && messageCtrl.touched)
+                }"
+              ></textarea>
+              <p *ngIf="messageCtrl.invalid && messageCtrl.touched" class="text-red-500 text-xs mt-1">
+                Le message est obligatoire.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <button
+                type="submit"
+                [disabled]="!contactForm.valid || isSending"
+                class="bg-primary-container text-on-primary-container px-12 py-4 rounded-full font-headline font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {{ isSending ? 'Envoi en cours...' : 'Envoyer ma candidature' }}
+              </button>
+
+              <p *ngIf="errorMessage" class="text-red-600 text-sm">
+                {{ errorMessage }}
+              </p>
+            </div>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>

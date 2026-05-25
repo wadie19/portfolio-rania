@@ -1,0 +1,99 @@
+<section class="py-24 bg-surface" id="experience">
+  <div class="max-w-5xl mx-auto px-8">
+    <div class="text-center mb-16">
+      <span class="text-primary font-headline font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+        Parcours
+      </span>
+      <h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight">
+        Mon Expérience
+      </h2>
+      <p class="text-on-surface-variant mt-4 max-w-xl mx-auto text-base leading-relaxed">
+        Une expérience construite avec détermination, passion et un vrai goût pour l'entreprise.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <div
+        *ngFor="let exp of experiences; trackBy: trackByExperienceTitle"
+        class="bg-surface-container-low p-8 rounded-lg"
+      >
+        <div class="flex flex-col md:flex-row gap-8 items-start md:items-start">
+          <div class="md:w-36 shrink-0">
+            <div class="text-primary font-headline font-bold text-base">
+              {{ exp.period }}
+            </div>
+            <span class="mt-2 inline-block bg-surface-container-lowest px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary">
+              {{ exp.duration }}
+            </span>
+          </div>
+
+          <div class="flex-1">
+            <h3 class="text-xl font-headline font-bold">
+              {{ exp.title }}
+            </h3>
+
+            <p class="text-primary font-medium text-sm mb-1">
+              {{ exp.role }}
+            </p>
+
+            <p class="text-on-surface-variant text-xs mb-4 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">location_on</span>
+              {{ exp.location }}
+            </p>
+
+            <p class="text-on-surface-variant/80 text-sm leading-relaxed mb-4">
+              {{ exp.description }}
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span
+                *ngFor="let h of exp.highlights; trackBy: trackByHighlight"
+                class="bg-primary-fixed text-on-primary-fixed-variant text-xs px-3 py-1 rounded-full font-medium"
+              >
+                {{ h }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-surface-container-low p-8 rounded-lg">
+      <h3 class="text-lg font-headline font-bold mb-6 text-on-surface">
+        Techniques maîtrisées
+      </h3>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          *ngFor="let cert of certifications; trackBy: trackByCertificationLabel"
+          class="flex items-center gap-2"
+        >
+          <span class="material-symbols-outlined text-primary text-xl">
+            {{ cert.icon }}
+          </span>
+          <span class="text-sm font-medium text-on-surface">
+            {{ cert.label }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 border-2 border-primary-fixed rounded-lg p-8 flex flex-col md:flex-row items-start gap-6">
+      <div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-primary text-3xl">storefront</span>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-headline font-bold mb-2">
+          J'ai créé mon propre atelier
+        </h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">
+          En Tunisie, j'ai monté mon atelier de A à Z : recherche du local, aménagement, équipement, communication
+          et gestion au quotidien. Cette expérience d'entrepreneuse m'a appris la rigueur, l'autonomie et
+          le sens du service client. Je suis fière d'avoir bâti quelque chose qui m'appartient, et je suis prête
+          à mettre cette énergie au service d'un salon en France.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
